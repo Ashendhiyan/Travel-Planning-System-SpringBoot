@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class HotelServiceImpl implements HotelService {
@@ -49,5 +51,10 @@ public class HotelServiceImpl implements HotelService {
             new RuntimeException(id+" Hotel Not Found..!");
         }
         return convertor.hotelEntityToHotelDto( hotelRepo.findById(id).get());
+    }
+
+    @Override
+    public List<HotelDTO> getAllHotels() {
+        return convertor.hotelEntityListToHotelDTOList(  hotelRepo.findAll());
     }
 }
