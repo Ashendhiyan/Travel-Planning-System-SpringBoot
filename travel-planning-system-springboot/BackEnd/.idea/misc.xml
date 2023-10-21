@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Demo/pom.xml" />
+        <option value="$PROJECT_DIR$/Guide/Guide_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/User/User_Service/User_Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Hotel/Hotel_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/Package/Package_Server/pom.xml" />
+        <option value="$PROJECT_DIR$/Vehicle/Vehicle_Server/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/Demo/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
