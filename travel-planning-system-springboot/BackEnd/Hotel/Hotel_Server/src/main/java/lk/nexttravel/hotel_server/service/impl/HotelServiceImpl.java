@@ -1,6 +1,7 @@
 package lk.nexttravel.hotel_server.service.impl;
 
 import lk.nexttravel.hotel_server.dto.HotelDTO;
+import lk.nexttravel.hotel_server.entity.Hotel;
 import lk.nexttravel.hotel_server.repo.HotelRepo;
 import lk.nexttravel.hotel_server.service.HotelService;
 import lk.nexttravel.hotel_server.util.Convertor;
@@ -40,5 +41,13 @@ public class HotelServiceImpl implements HotelService {
             new RuntimeException(id+" Hotel Not Found..!");
         }
         hotelRepo.deleteById(id);
+    }
+
+    @Override
+    public HotelDTO findHotelById(String id) {
+        if (!hotelRepo.existsById(id)){
+            new RuntimeException(id+" Hotel Not Found..!");
+        }
+        return convertor.hotelEntityToHotelDto( hotelRepo.findById(id).get());
     }
 }

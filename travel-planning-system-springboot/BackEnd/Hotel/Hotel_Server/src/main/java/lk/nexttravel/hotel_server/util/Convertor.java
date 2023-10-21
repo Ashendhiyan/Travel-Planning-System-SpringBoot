@@ -17,4 +17,7 @@ public class Convertor {
         return modelMapper.map(hotelDTO, Hotel.class);
     }
 
+    public HotelDTO hotelEntityToHotelDto(Hotel hotel){
+        return modelMapper.map(hotel, HotelDTO.class);
+    }
 }

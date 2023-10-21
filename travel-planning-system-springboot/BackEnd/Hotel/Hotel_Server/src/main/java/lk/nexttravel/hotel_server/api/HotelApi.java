@@ -31,4 +31,9 @@ public class HotelApi {
         return new ResponseEntity<>(id+" Hotel Deleted..!",HttpStatus.OK);
     }
 
+    @GetMapping(params = "id")
+    public ResponseEntity<HotelDTO> findHotelById(String id){
+        return new ResponseEntity<>(hotelService.findHotelById(id),HttpStatus.OK);
+    }
+
 }
