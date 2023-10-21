@@ -25,4 +25,10 @@ public class HotelApi {
         hotelService.updateHotel(hotelDTO);
         return new ResponseEntity<>(hotelDTO.getId()+" Hotel Updated..!",HttpStatus.OK);
     }
+    @DeleteMapping(params = "id")
+    public ResponseEntity<String> deleteHotel(String id){
+        hotelService.deleteHotel(id);
+        return new ResponseEntity<>(id+" Hotel Deleted..!",HttpStatus.OK);
+    }
+
 }

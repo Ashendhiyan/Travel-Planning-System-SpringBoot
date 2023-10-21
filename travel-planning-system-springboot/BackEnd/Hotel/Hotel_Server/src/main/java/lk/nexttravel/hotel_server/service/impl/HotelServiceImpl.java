@@ -33,4 +33,12 @@ public class HotelServiceImpl implements HotelService {
         }
         hotelRepo.save(convertor.hotelDtoToHotelEntity(dto));
     }
+
+    @Override
+    public void deleteHotel(String id) {
+        if (!hotelRepo.existsById(id)){
+            new RuntimeException(id+" Hotel Not Found..!");
+        }
+        hotelRepo.deleteById(id);
+    }
 }
