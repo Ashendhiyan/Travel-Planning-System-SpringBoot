@@ -1,10 +1,9 @@
 package lk.nexttravel.userservice.service.impl;
 
 import lk.nexttravel.userservice.dto.UserDTO;
-import lk.nexttravel.userservice.entity.User;
 import lk.nexttravel.userservice.repo.UserRepo;
 import lk.nexttravel.userservice.service.UserService;
-import lk.nexttravel.userservice.util.Convertor;
+import lk.nexttravel.userservice.util.UserConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +17,13 @@ public class UserServiceImpl implements UserService {
     UserRepo userRepo;
 
     @Autowired
-    Convertor convertor;
+    UserConvertor userConvertor;
     @Override
     public void saveUser(UserDTO dto) {
         if (userRepo.existsById(dto.getId())){
              new RuntimeException(dto.getId()+"User Already Exists..!");
         }
-        userRepo.save(convertor.userDtoToUserEntity(dto));
+        userRepo.save(userConvertor.userDtoToUserEntity(dto));
     }
 
     @Override
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
         if (!userRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Not Found..");
         }
-        userRepo.save(convertor.userDtoToUserEntity(dto));
+        userRepo.save(userConvertor.userDtoToUserEntity(dto));
     }
 
     @Override
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
         if(!userRepo.existsById(id)){
             new RuntimeException(id+" Not Found..!");
         }
-        return convertor.userEntityToUserDto(userRepo.findById(id).get());
+        return userConvertor.userEntityToUserDto(userRepo.findById(id).get());
     }
 
     @Override
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAll() {
-        return convertor.userEntityListToUserDTOList(userRepo.findAll());
+        return userConvertor.userEntityListToUserDTOList(userRepo.findAll());
     }
 
 }

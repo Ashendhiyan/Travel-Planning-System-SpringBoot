@@ -10,15 +10,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class User {
+public class Customer {
     @Id
     private String id;
     private String userName;
+    private String address;
     private int age;
     private String email;
     private String gender;
     private int nic;
-    private String address;
-    private String contactNumber;
-    private String role;
+    private String contactNumber;;
 }

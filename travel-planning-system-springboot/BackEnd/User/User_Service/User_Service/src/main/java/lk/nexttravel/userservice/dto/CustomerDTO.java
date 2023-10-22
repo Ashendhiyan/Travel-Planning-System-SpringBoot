@@ -1,7 +1,5 @@
-package lk.nexttravel.userservice.entity;
+package lk.nexttravel.userservice.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,16 +7,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class User {
-    @Id
+public class CustomerDTO {
     private String id;
     private String userName;
+    private String address;
     private int age;
     private String email;
     private String gender;
     private int nic;
-    private String address;
-    private String contactNumber;
-    private String role;
+    private String contactNumber;;
 }
