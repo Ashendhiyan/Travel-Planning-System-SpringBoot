@@ -26,4 +26,12 @@ public class VehicleServiceImpl implements VehicleService {
         }
         vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
     }
+
+    @Override
+    public void updateVehicle(VehicleDTO dto) {
+        if (!vehicleServiceRepo.existsById(dto.getId())){
+            new RuntimeException(dto.getId()+" Vehicle Not Found..!");
+        }
+        vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
+    }
 }
