@@ -26,4 +26,10 @@ public class VehicleApi {
         return new ResponseEntity<>(vehicleDTO.getId()+" Vehicle Updated..!",HttpStatus.OK);
     }
 
+    @DeleteMapping(params = "id")
+    public ResponseEntity<String> deleteVehicle(String id){
+        vehicleService.deleteVehicle(id);
+        return new ResponseEntity<>(id+" Vehicle Deleted..!",HttpStatus.OK);
+    }
+
 }

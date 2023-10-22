@@ -34,4 +34,12 @@ public class VehicleServiceImpl implements VehicleService {
         }
         vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
     }
+
+    @Override
+    public void deleteVehicle(String id) {
+        if (!vehicleServiceRepo.existsById(id)){
+            new RuntimeException(id+" Vehicle Not Found..!");
+        }
+        vehicleServiceRepo.deleteById(id);
+    }
 }
