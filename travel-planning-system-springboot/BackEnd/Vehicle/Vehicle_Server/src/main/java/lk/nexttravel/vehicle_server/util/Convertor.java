@@ -15,4 +15,8 @@ public class Convertor {
     public Vehicle vehicleDtoToVehicleEntity(VehicleDTO vehicleDTO){
         return modelMapper.map(vehicleDTO,Vehicle.class);
     }
+
+    public VehicleDTO vehicleEntityToVehicleDto(Vehicle vehicle){
+        return modelMapper.map(vehicle, VehicleDTO.class);
+    }
 }

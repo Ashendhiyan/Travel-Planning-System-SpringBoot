@@ -1,6 +1,7 @@
 package lk.nexttravel.vehicle_server.service.impl;
 
 import lk.nexttravel.vehicle_server.dto.VehicleDTO;
+import lk.nexttravel.vehicle_server.entity.Vehicle;
 import lk.nexttravel.vehicle_server.repo.VehicleServiceRepo;
 import lk.nexttravel.vehicle_server.service.VehicleService;
 import lk.nexttravel.vehicle_server.util.Convertor;
@@ -41,5 +42,13 @@ public class VehicleServiceImpl implements VehicleService {
             new RuntimeException(id+" Vehicle Not Found..!");
         }
         vehicleServiceRepo.deleteById(id);
+    }
+
+    @Override
+    public VehicleDTO getVehicleById(String id) {
+        if (!vehicleServiceRepo.existsById(id)){
+            new RuntimeException(id+" Vehicle Not Found..!");
+        }
+        return convertor.vehicleEntityToVehicleDto(vehicleServiceRepo.findById(id).get());
     }
 }
