@@ -34,4 +34,12 @@ public class BookingServiceImpl implements BookingService {
         bookingRepo.save(convertor.bookingDtoToBookingEntity(dto));
     }
 
+    @Override
+    public void deleteBooking(String id) {
+        if (!bookingRepo.existsById(id)){
+            new RuntimeException(id+" Not Found..!");
+        }
+        bookingRepo.deleteById(id);
+    }
+
 }

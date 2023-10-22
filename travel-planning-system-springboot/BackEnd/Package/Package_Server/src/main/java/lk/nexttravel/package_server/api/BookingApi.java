@@ -26,4 +26,9 @@ public class BookingApi {
         return new ResponseEntity<>(bookingDTO.getBookingId()+" Booking Updated..!",HttpStatus.OK);
     }
 
+    @DeleteMapping(params = "id")
+    public ResponseEntity<String> deleteBookingById(String id){
+        bookingService.deleteBooking(id);
+        return new ResponseEntity<>(id+" Booking Deleted..!",HttpStatus.OK);
+    }
 }
