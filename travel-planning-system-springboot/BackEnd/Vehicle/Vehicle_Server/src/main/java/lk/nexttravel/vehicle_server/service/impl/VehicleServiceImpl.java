@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class VehicleServiceImpl implements VehicleService {
@@ -50,5 +52,10 @@ public class VehicleServiceImpl implements VehicleService {
             new RuntimeException(id+" Vehicle Not Found..!");
         }
         return convertor.vehicleEntityToVehicleDto(vehicleServiceRepo.findById(id).get());
+    }
+
+    @Override
+    public List<VehicleDTO> getAllVehicles() {
+        return convertor.vehicleEntityListToVehicleDTOList(vehicleServiceRepo.findAll());
     }
 }

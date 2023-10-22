@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/vehicle")
 public class VehicleApi {
@@ -35,5 +37,10 @@ public class VehicleApi {
     @GetMapping(params = "id")
     public ResponseEntity<VehicleDTO> findVehicleById(String id){
         return new ResponseEntity<>(vehicleService.getVehicleById(id),HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<VehicleDTO>> getAllVehicles(){
+        return new ResponseEntity<>(vehicleService.getAllVehicles(),HttpStatus.OK);
     }
 }
