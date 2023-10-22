@@ -22,7 +22,19 @@ public class CustomerServiceImpl implements CustomerService {
     public void saveCustomer(CustomerDTO dto) {
         if (customerRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Customer Already Exists..!");
+        }else {
+            customerRepo.save(convertor.customerDtoToCustomerEntity(dto));
         }
-        customerRepo.save(convertor.customerDtoToCustomerEntity(dto));
     }
+
+    @Override
+    public void updateCustomer(CustomerDTO dto) {
+        if (!customerRepo.existsById(dto.getId())){
+             new RuntimeException(dto.getId()+" Customer Not Found..!");
+        }else {
+            customerRepo.save(convertor.customerDtoToCustomerEntity(dto));
+        }
+    }
+
+
 }
