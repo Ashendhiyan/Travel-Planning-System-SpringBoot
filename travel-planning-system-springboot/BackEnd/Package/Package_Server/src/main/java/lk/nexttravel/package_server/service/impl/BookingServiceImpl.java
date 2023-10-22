@@ -26,5 +26,12 @@ public class BookingServiceImpl implements BookingService {
         bookingRepo.save(convertor.bookingDtoToBookingEntity(dto));
     }
 
+    @Override
+    public void updateBooking(BookingDTO dto) {
+        if (!bookingRepo.existsById(dto.getBookingId())){
+            new RuntimeException(dto.getBookingId()+" Booking Not Found..!");
+        }
+        bookingRepo.save(convertor.bookingDtoToBookingEntity(dto));
+    }
 
 }

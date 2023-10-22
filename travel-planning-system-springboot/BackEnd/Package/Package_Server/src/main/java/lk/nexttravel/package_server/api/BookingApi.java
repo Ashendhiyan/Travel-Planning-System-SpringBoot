@@ -20,5 +20,10 @@ public class BookingApi {
         return new ResponseEntity<>(bookingDTO.getBookingId()+" Booking Saved..!", HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateBooking(@RequestBody BookingDTO bookingDTO){
+        bookingService.updateBooking(bookingDTO);
+        return new ResponseEntity<>(bookingDTO.getBookingId()+" Booking Updated..!",HttpStatus.OK);
+    }
 
 }
