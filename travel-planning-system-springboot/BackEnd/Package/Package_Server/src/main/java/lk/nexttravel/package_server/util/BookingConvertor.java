@@ -14,4 +14,8 @@ public class BookingConvertor {
      public Booking bookingDtoToBookingEntity(BookingDTO bookingDTO){
          return modelMapper.map(bookingDTO,Booking.class);
      }
+
+     public BookingDTO bookigEntityToBookingDto(Booking booking){
+         return modelMapper.map(booking,BookingDTO.class);
+     }
 }

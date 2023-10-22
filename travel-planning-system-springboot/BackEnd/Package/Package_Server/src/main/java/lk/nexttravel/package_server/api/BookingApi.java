@@ -31,4 +31,9 @@ public class BookingApi {
         bookingService.deleteBooking(id);
         return new ResponseEntity<>(id+" Booking Deleted..!",HttpStatus.OK);
     }
+
+    @GetMapping(params = "id")
+    public ResponseEntity<BookingDTO> findBookingById(String id){
+        return new ResponseEntity<>(bookingService.findByBookingId(id),HttpStatus.OK);
+    }
 }

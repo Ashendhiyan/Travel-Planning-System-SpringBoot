@@ -1,6 +1,7 @@
 package lk.nexttravel.package_server.service.impl;
 
 import lk.nexttravel.package_server.dto.BookingDTO;
+import lk.nexttravel.package_server.entity.Booking;
 import lk.nexttravel.package_server.repo.BookingServiceRepo;
 import lk.nexttravel.package_server.service.BookingService;
 import lk.nexttravel.package_server.util.BookingConvertor;
@@ -40,6 +41,14 @@ public class BookingServiceImpl implements BookingService {
             new RuntimeException(id+" Not Found..!");
         }
         bookingRepo.deleteById(id);
+    }
+
+    @Override
+    public BookingDTO findByBookingId(String id) {
+        if (!bookingRepo.existsById(id)){
+            new RuntimeException(id+" Booking not Found..!");
+        }
+        return convertor.bookigEntityToBookingDto(bookingRepo.findById(id).get());
     }
 
 }
