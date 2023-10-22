@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class Convertor {
+public class PackageConvertor {
     @Autowired
     ModelMapper modelMapper;
 

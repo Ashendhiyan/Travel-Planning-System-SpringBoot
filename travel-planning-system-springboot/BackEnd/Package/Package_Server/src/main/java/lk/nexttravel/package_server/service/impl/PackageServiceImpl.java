@@ -4,7 +4,7 @@ import lk.nexttravel.package_server.dto.PackageDTO;
 import lk.nexttravel.package_server.entity.Package;
 import lk.nexttravel.package_server.repo.PackageREPO;
 import lk.nexttravel.package_server.service.PackageService;
-import lk.nexttravel.package_server.util.Convertor;
+import lk.nexttravel.package_server.util.PackageConvertor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +18,13 @@ public class PackageServiceImpl implements PackageService {
     PackageREPO packageREPO;
 
     @Autowired
-    Convertor convertor;
+    PackageConvertor packageConvertor;
     @Override
     public void savePackage(PackageDTO dto) {
             if (packageREPO.existsById(dto.getPackageId())){
                 new RuntimeException(dto.getPackageId()+"Package  id is already exists..!!");
             }
-        packageREPO.save(convertor.packageDtoToPackageEntity(dto));
+        packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class PackageServiceImpl implements PackageService {
         if (!packageREPO.existsById(dto.getPackageId())){
             new RuntimeException(dto.getPackageId()+"Package is not in the system");
         }
-        packageREPO.save(convertor.packageDtoToPackageEntity(dto));
+        packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
     }
 
     @Override
@@ -49,12 +49,12 @@ public class PackageServiceImpl implements PackageService {
             new RuntimeException(id+"Package Not Found..!");
         }
         Package aPackage = packageREPO.findById(id).get();
-        return convertor.packageEntityToPackageDto(aPackage);
+        return packageConvertor.packageEntityToPackageDto(aPackage);
     }
 
     @Override
     public List<PackageDTO> getAll() {
-        return convertor.packageEntityListToPackageDTOList(packageREPO.findAll());
+        return packageConvertor.packageEntityListToPackageDTOList(packageREPO.findAll());
     }
 }
 
