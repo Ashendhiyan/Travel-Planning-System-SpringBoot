@@ -24,4 +24,10 @@ public class CustomerApi {
         customerService.updateCustomer(customer);
         return new ResponseEntity<>(customer.getId()+" Customer Updated..!",HttpStatus.OK);
     }
+
+    @DeleteMapping(params = "id")
+    public ResponseEntity<String> deleteCustomer(String id){
+        customerService.deleteCustomer(id);
+        return new ResponseEntity<>(id+" Customer Deleted..!",HttpStatus.OK);
+    }
 }
