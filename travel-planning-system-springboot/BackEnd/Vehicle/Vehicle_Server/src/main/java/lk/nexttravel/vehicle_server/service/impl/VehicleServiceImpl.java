@@ -26,16 +26,18 @@ public class VehicleServiceImpl implements VehicleService {
     public void saveVehicle(VehicleDTO dto) {
         if (vehicleServiceRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Vehicle Already Exists..!");
+        }else {
+            vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
-        vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
     }
 
     @Override
     public void updateVehicle(VehicleDTO dto) {
         if (!vehicleServiceRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Vehicle Not Found..!");
+        }else {
+            vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
-        vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
     }
 
     @Override

@@ -43,9 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(String id) {
         if (customerRepo.existsById(id)){
             new RuntimeException(id+" Customer Not Found..!");
-        }else {
-            customerRepo.deleteById(id);
         }
+            customerRepo.deleteById(id);
+
     }
 
     @Override

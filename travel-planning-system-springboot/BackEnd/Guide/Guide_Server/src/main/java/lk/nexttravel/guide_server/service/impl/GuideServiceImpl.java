@@ -26,16 +26,18 @@ public class GuideServiceImpl implements GuideService {
     public void saveGuide(GuideDTO dto) {
         if (guideRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Guide Already Exists..!");
+        }else {
+            guideRepo.save(convertor.guideDtoToGuideEntity(dto));
         }
-        guideRepo.save(convertor.guideDtoToGuideEntity(dto));
     }
 
     @Override
     public void updateGuide(GuideDTO dto) {
         if (!guideRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+"Guide Not Found..!");
+        }else {
+            guideRepo.save(convertor.guideDtoToGuideEntity(dto));
         }
-        guideRepo.save(convertor.guideDtoToGuideEntity(dto));
     }
 
     @Override
@@ -50,8 +52,9 @@ public class GuideServiceImpl implements GuideService {
     public void deleteGuide(String id) {
         if (!guideRepo.existsById(id)){
             new RuntimeException(id+ " Guide Not Found..!");
+        }else {
+            guideRepo.deleteById(id);
         }
-        guideRepo.deleteById(id);
     }
 
     @Override

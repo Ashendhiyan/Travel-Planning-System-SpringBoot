@@ -22,16 +22,18 @@ public class UserServiceImpl implements UserService {
     public void saveUser(UserDTO dto) {
         if (userRepo.existsById(dto.getId())){
              new RuntimeException(dto.getId()+"User Already Exists..!");
+        }else {
+            userRepo.save(userConvertor.userDtoToUserEntity(dto));
         }
-        userRepo.save(userConvertor.userDtoToUserEntity(dto));
     }
 
     @Override
     public void updateUser(UserDTO dto) {
         if (!userRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Not Found..");
+        }else {
+            userRepo.save(userConvertor.userDtoToUserEntity(dto));
         }
-        userRepo.save(userConvertor.userDtoToUserEntity(dto));
     }
 
     @Override

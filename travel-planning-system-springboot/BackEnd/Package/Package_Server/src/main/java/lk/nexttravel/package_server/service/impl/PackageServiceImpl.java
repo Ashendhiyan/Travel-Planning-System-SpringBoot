@@ -23,16 +23,18 @@ public class PackageServiceImpl implements PackageService {
     public void savePackage(PackageDTO dto) {
             if (packageREPO.existsById(dto.getPackageId())){
                 new RuntimeException(dto.getPackageId()+"Package  id is already exists..!!");
+            }else {
+                packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
             }
-        packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
     }
 
     @Override
     public void updatePackage(PackageDTO dto) {
         if (!packageREPO.existsById(dto.getPackageId())){
             new RuntimeException(dto.getPackageId()+"Package is not in the system");
+        }else {
+            packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
         }
-        packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
     }
 
     @Override

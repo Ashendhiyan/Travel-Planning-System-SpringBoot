@@ -25,16 +25,18 @@ public class HotelServiceImpl implements HotelService {
     public void saveHotel(HotelDTO dto) {
         if (hotelRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Hotel Already Exists..!");
+        }else {
+            hotelRepo.save(convertor.hotelDtoToHotelEntity(dto));
         }
-        hotelRepo.save(convertor.hotelDtoToHotelEntity(dto));
     }
 
     @Override
     public void updateHotel(HotelDTO dto) {
         if (!hotelRepo.existsById(dto.getId())){
             new RuntimeException(dto.getId()+" Hotel Not Found..!");
+        }else {
+            hotelRepo.save(convertor.hotelDtoToHotelEntity(dto));
         }
-        hotelRepo.save(convertor.hotelDtoToHotelEntity(dto));
     }
 
     @Override
