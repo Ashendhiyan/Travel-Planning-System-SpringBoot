@@ -22,7 +22,7 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public void savePackage(PackageDTO dto) {
             if (packageREPO.existsById(dto.getPackageId())){
-                new RuntimeException(dto.getPackageId()+"Package  id is already exists..!!");
+                throw new RuntimeException(dto.getPackageId()+"Package  id is already exists..!!");
             }else {
                 packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
             }
@@ -31,7 +31,7 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public void updatePackage(PackageDTO dto) {
         if (!packageREPO.existsById(dto.getPackageId())){
-            new RuntimeException(dto.getPackageId()+"Package is not in the system");
+            throw new RuntimeException(dto.getPackageId()+"Package is not in the system");
         }else {
             packageREPO.save(packageConvertor.packageDtoToPackageEntity(dto));
         }
@@ -40,7 +40,7 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public void deletePackage(String id) {
         if (!packageREPO.existsById(id)){
-            new RuntimeException(id+"Package Not Found..!");
+            throw new RuntimeException(id+"Package Not Found..!");
         }
         packageREPO.deleteById(id);
     }
@@ -48,7 +48,7 @@ public class PackageServiceImpl implements PackageService {
     @Override
     public PackageDTO findById(String id) {
         if (!packageREPO.existsById(id)){
-            new RuntimeException(id+"Package Not Found..!");
+            throw new RuntimeException(id+"Package Not Found..!");
         }
         Package aPackage = packageREPO.findById(id).get();
         return packageConvertor.packageEntityToPackageDto(aPackage);

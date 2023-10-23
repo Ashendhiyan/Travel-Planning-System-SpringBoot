@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDTO dto) {
         if (userRepo.existsById(dto.getId())){
-             new RuntimeException(dto.getId()+"User Already Exists..!");
+            throw new RuntimeException(dto.getId()+"User Already Exists..!");
         }else {
             userRepo.save(userConvertor.userDtoToUserEntity(dto));
         }
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UserDTO dto) {
         if (!userRepo.existsById(dto.getId())){
-            new RuntimeException(dto.getId()+" Not Found..");
+            throw new RuntimeException(dto.getId()+" Not Found..");
         }else {
             userRepo.save(userConvertor.userDtoToUserEntity(dto));
         }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findById(String id) {
         if(!userRepo.existsById(id)){
-            new RuntimeException(id+" Not Found..!");
+            throw new RuntimeException(id+" Not Found..!");
         }
         return userConvertor.userEntityToUserDto(userRepo.findById(id).get());
     }
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) {
         if (!userRepo.existsById(id)){
-            new RuntimeException(id+"User not found");
+            throw new RuntimeException(id+"User not found");
         }
         userRepo.deleteById(id);
     }

@@ -19,5 +19,5 @@ public class Customer {
     private String email;
     private String gender;
     private int nic;
-    private String contactNumber;;
+    private String contactNumber;
 }

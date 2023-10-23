@@ -25,7 +25,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void saveVehicle(VehicleDTO dto) {
         if (vehicleServiceRepo.existsById(dto.getId())){
-            new RuntimeException(dto.getId()+" Vehicle Already Exists..!");
+            throw new RuntimeException(dto.getId()+" Vehicle Already Exists..!");
         }else {
             vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
@@ -34,7 +34,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void updateVehicle(VehicleDTO dto) {
         if (!vehicleServiceRepo.existsById(dto.getId())){
-            new RuntimeException(dto.getId()+" Vehicle Not Found..!");
+            throw new RuntimeException(dto.getId()+" Vehicle Not Found..!");
         }else {
             vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
@@ -43,7 +43,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void deleteVehicle(String id) {
         if (!vehicleServiceRepo.existsById(id)){
-            new RuntimeException(id+" Vehicle Not Found..!");
+            throw new RuntimeException(id+" Vehicle Not Found..!");
         }
         vehicleServiceRepo.deleteById(id);
     }
@@ -51,7 +51,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleDTO getVehicleById(String id) {
         if (!vehicleServiceRepo.existsById(id)){
-            new RuntimeException(id+" Vehicle Not Found..!");
+            throw new RuntimeException(id+" Vehicle Not Found..!");
         }
         return convertor.vehicleEntityToVehicleDto(vehicleServiceRepo.findById(id).get());
     }

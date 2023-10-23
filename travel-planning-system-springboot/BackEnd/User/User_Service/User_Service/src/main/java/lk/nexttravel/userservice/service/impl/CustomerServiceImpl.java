@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void saveCustomer(CustomerDTO dto) {
         if (customerRepo.existsById(dto.getId())){
-            new RuntimeException(dto.getId()+" Customer Already Exists..!");
+            throw new RuntimeException(dto.getId()+" Customer Already Exists..!");
         }else {
             customerRepo.save(convertor.customerDtoToCustomerEntity(dto));
         }
@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void updateCustomer(CustomerDTO dto) {
         if (!customerRepo.existsById(dto.getId())){
-             new RuntimeException(dto.getId()+" Customer Not Found..!");
+            throw new RuntimeException(dto.getId()+" Customer Not Found..!");
         }else {
             customerRepo.save(convertor.customerDtoToCustomerEntity(dto));
         }
@@ -41,8 +41,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
-        if (customerRepo.existsById(id)){
-            new RuntimeException(id+" Customer Not Found..!");
+        if (!customerRepo.existsById(id)){
+            throw throw new RuntimeException(id+" Customer Not Found..!");
         }
             customerRepo.deleteById(id);
 
@@ -51,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO findByCustomerId(String id) {
         if (!customerRepo.existsById(id)){
-            new RuntimeException(id+" Customer Not Found..!");
+            throw new RuntimeException(id+" Customer Not Found..!");
         }
         return convertor.customerEntityToCustomerDto(customerRepo.findById(id).get());
     }

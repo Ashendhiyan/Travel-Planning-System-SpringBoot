@@ -24,7 +24,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void saveBooking(BookingDTO dto) {
         if (bookingRepo.existsById(dto.getBookingId())) {
-            new RuntimeException(dto.getBookingId() + " Booking Saved..!");
+            throw new RuntimeException(dto.getBookingId() + " Booking Saved..!");
         } else{
             bookingRepo.save(convertor.bookingDtoToBookingEntity(dto));
         }
@@ -33,7 +33,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void updateBooking(BookingDTO dto) {
         if (!bookingRepo.existsById(dto.getBookingId())){
-            new RuntimeException(dto.getBookingId()+" Booking Not Found..!");
+            throw new RuntimeException(dto.getBookingId()+" Booking Not Found..!");
         }else {
             bookingRepo.save(convertor.bookingDtoToBookingEntity(dto));
         }
@@ -42,7 +42,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public void deleteBooking(String id) {
         if (!bookingRepo.existsById(id)){
-            new RuntimeException(id+" Not Found..!");
+            throw new RuntimeException(id+" Not Found..!");
         }
         bookingRepo.deleteById(id);
     }
@@ -50,7 +50,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingDTO findByBookingId(String id) {
         if (!bookingRepo.existsById(id)){
-            new RuntimeException(id+" Booking not Found..!");
+            throw new RuntimeException(id+" Booking not Found..!");
         }
         return convertor.bookigEntityToBookingDto(bookingRepo.findById(id).get());
     }
