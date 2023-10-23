@@ -30,4 +30,9 @@ public class CustomerApi {
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(id+" Customer Deleted..!",HttpStatus.OK);
     }
+
+    @GetMapping(params = "id")
+    public ResponseEntity<CustomerDTO> findCustomerById(String id){
+        return new ResponseEntity<>(customerService.findByCustomerId(id),HttpStatus.OK);
+    }
 }

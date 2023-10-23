@@ -6,4 +6,5 @@ public interface CustomerService {
     void saveCustomer(CustomerDTO dto);
     void updateCustomer(CustomerDTO dto);
     void deleteCustomer(String id);
+    CustomerDTO findByCustomerId(String id);
 }

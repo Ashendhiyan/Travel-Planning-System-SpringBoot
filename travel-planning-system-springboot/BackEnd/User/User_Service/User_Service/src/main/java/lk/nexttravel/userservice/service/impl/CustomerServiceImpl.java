@@ -1,6 +1,7 @@
 package lk.nexttravel.userservice.service.impl;
 
 import lk.nexttravel.userservice.dto.CustomerDTO;
+import lk.nexttravel.userservice.entity.Customer;
 import lk.nexttravel.userservice.repo.CustomerServiceRepo;
 import lk.nexttravel.userservice.service.CustomerService;
 import lk.nexttravel.userservice.util.CustomerConvertor;
@@ -43,6 +44,14 @@ public class CustomerServiceImpl implements CustomerService {
         }else {
             customerRepo.deleteById(id);
         }
+    }
+
+    @Override
+    public CustomerDTO findByCustomerId(String id) {
+        if (!customerRepo.existsById(id)){
+            new RuntimeException(id+" Customer Not Found..!");
+        }
+        return convertor.customerEntityToCustomerDto(customerRepo.findById(id).get());
     }
 
 
