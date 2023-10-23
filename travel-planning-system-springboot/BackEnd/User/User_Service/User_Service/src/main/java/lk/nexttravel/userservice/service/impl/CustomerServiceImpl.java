@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -39,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
-        if (!customerRepo.existsById(id)){
+        if (customerRepo.existsById(id)){
             new RuntimeException(id+" Customer Not Found..!");
         }else {
             customerRepo.deleteById(id);
@@ -52,6 +54,11 @@ public class CustomerServiceImpl implements CustomerService {
             new RuntimeException(id+" Customer Not Found..!");
         }
         return convertor.customerEntityToCustomerDto(customerRepo.findById(id).get());
+    }
+
+    @Override
+    public List<CustomerDTO> getAllCustomers() {
+        return convertor.customerEntityListToCustomerDTOList(customerRepo.findAll());
     }
 
 

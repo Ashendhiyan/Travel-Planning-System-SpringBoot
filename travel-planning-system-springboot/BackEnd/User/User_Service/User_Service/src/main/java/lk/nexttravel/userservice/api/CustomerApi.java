@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/customer")
 public class CustomerApi {
@@ -34,5 +36,10 @@ public class CustomerApi {
     @GetMapping(params = "id")
     public ResponseEntity<CustomerDTO> findCustomerById(String id){
         return new ResponseEntity<>(customerService.findByCustomerId(id),HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CustomerDTO>> getAllCustomers(){
+        return new ResponseEntity<>(customerService.getAllCustomers(),HttpStatus.OK);
     }
 }
