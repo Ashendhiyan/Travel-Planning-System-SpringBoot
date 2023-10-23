@@ -19,13 +19,13 @@ public class VehicleApi {
     @PostMapping
     public ResponseEntity<String> saveVehicle(@RequestBody VehicleDTO vehicleDTO){
         vehicleService.saveVehicle(vehicleDTO);
-        return new ResponseEntity<>(vehicleDTO.getId()+" Vehicle Saved..!", HttpStatus.OK);
+        return new ResponseEntity<>(vehicleDTO.getRegistrationNumber()+" Vehicle Saved..!", HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<String> updateVehicle(@RequestBody VehicleDTO vehicleDTO){
         vehicleService.updateVehicle(vehicleDTO);
-        return new ResponseEntity<>(vehicleDTO.getId()+" Vehicle Updated..!",HttpStatus.OK);
+        return new ResponseEntity<>(vehicleDTO.getRegistrationNumber()+" Vehicle Updated..!",HttpStatus.OK);
     }
 
     @DeleteMapping(params = "id")

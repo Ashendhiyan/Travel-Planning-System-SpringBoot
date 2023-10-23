@@ -1,5 +1,6 @@
 package lk.nexttravel.vehicle_server.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -12,16 +13,25 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Vehicle {
     @Id
-    private String id;
-    private String vehicleBrand;
+    private String registrationNumber;
+    private String brand;
     private String category;
     private String fuelType;
-    private String hybridStatus;
-    private int fuelUsage;
-    private String images;
+    private boolean hybridStatus;
+    private double fuelUsage;
     private int seatCapacity;
     private String vehicleType;
-    private String transmission;
+    private String transmissionType;
     private String driverName;
-    private String driverLicense;
+    private String driverLicenseId;
+    @Column(columnDefinition = "LONGTEXT")
+    private String driverLicenseImage;
+    @Column(columnDefinition = "LONGTEXT")
+    private String frontView;
+    @Column(columnDefinition = "LONGTEXT")
+    private String backView;
+    @Column(columnDefinition = "LONGTEXT")
+    private String leftSideView;
+    @Column(columnDefinition = "LONGTEXT")
+    private String rightSideView;
 }

@@ -6,7 +6,6 @@ import lk.nexttravel.vehicle_server.repo.VehicleServiceRepo;
 import lk.nexttravel.vehicle_server.service.VehicleService;
 import lk.nexttravel.vehicle_server.util.Convertor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +23,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void saveVehicle(VehicleDTO dto) {
-        if (vehicleServiceRepo.existsById(dto.getId())){
-            throw new RuntimeException(dto.getId()+" Vehicle Already Exists..!");
+        if (vehicleServiceRepo.existsById(dto.getRegistrationNumber())){
+            throw new RuntimeException(dto.getRegistrationNumber()+" Vehicle Already Exists..!");
         }else {
             vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
@@ -33,8 +32,8 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void updateVehicle(VehicleDTO dto) {
-        if (!vehicleServiceRepo.existsById(dto.getId())){
-            throw new RuntimeException(dto.getId()+" Vehicle Not Found..!");
+        if (!vehicleServiceRepo.existsById(dto.getRegistrationNumber())){
+            throw new RuntimeException(dto.getRegistrationNumber()+" Vehicle Not Found..!");
         }else {
             vehicleServiceRepo.save(convertor.vehicleDtoToVehicleEntity(dto));
         }
@@ -59,5 +58,13 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public List<VehicleDTO> getAllVehicles() {
         return convertor.vehicleEntityListToVehicleDTOList(vehicleServiceRepo.findAll());
+    }
+
+    @Override
+    public List<VehicleDTO> getAllVehiclesByVehicleType(String vehicleType) {
+        if (!vehicleServiceRepo.existsByVehicleType(vehicleType)){
+            throw new RuntimeException(vehicleType+" type vehicles cannot find in this server..!!");
+        }
+        return convertor.vehicleEntityListToVehicleDTOList( vehicleServiceRepo.findByVehicleType(vehicleType));
     }
 }
