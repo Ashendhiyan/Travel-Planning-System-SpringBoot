@@ -10,4 +10,6 @@ public interface VehicleServiceRepo extends JpaRepository<Vehicle,String> {
      List<Vehicle> findByVehicleType(String vehicleTpe);
 
     boolean existsByVehicleType(String vehicleType);
+
+    List<Vehicle> existsByTransmissionTypeAndSeatCapacityAndFuelType(String transmissionType, int seatCapacity, String fuelType);
 }

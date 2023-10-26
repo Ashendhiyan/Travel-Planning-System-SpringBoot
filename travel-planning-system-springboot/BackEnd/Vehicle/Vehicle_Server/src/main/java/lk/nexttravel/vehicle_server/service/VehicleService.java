@@ -12,4 +12,6 @@ public interface VehicleService {
     List<VehicleDTO> getAllVehicles();
 
     List<VehicleDTO> getAllVehiclesByVehicleType(String vehicleType);
+
+    List<VehicleDTO> getAllVehicleByTransmissionTypeAndSeatCapacityAndAndFuelType(String transmissionType,int seatCapacity,String fuelType);
 }

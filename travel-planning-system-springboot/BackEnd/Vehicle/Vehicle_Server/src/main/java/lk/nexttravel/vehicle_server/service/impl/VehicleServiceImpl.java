@@ -67,4 +67,9 @@ public class VehicleServiceImpl implements VehicleService {
         }
         return convertor.vehicleEntityListToVehicleDTOList( vehicleServiceRepo.findByVehicleType(vehicleType));
     }
+
+    @Override
+    public List<VehicleDTO> getAllVehicleByTransmissionTypeAndSeatCapacityAndAndFuelType(String transmissionType, int seatCapacity, String fuelType) {
+        return convertor.vehicleEntityListToVehicleDTOList(vehicleServiceRepo.existsByTransmissionTypeAndSeatCapacityAndFuelType(transmissionType,seatCapacity,fuelType));
+    }
 }
