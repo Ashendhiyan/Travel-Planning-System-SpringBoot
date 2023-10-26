@@ -66,9 +66,47 @@ registrationNumber,
 
 
     @PutMapping
-    public ResponseEntity<String> updateVehicle(@RequestBody VehicleDTO vehicleDTO) {
-        vehicleService.updateVehicle(vehicleDTO);
-        return new ResponseEntity<>(vehicleDTO.getRegistrationNumber() + " Vehicle Updated..!", HttpStatus.OK);
+    public ResponseEntity<String> updateVehicle(
+            @RequestParam("registrationNumber") String registrationNumber,
+            @RequestParam("brand") String brand,
+            @RequestParam("category") String category,
+            @RequestParam("fuelType") String fuelType,
+            @RequestParam("hybridStatus") boolean hybridStatus,
+            @RequestParam("fuelUsage") double fuelUsage,
+            @RequestParam("seatCapacity") int seatCapacity,
+            @RequestParam("vehicleType") String vehicleType,
+            @RequestParam("transmissionType") String transmissionType,
+            @RequestParam("driverName") String driverName,
+            @RequestParam("driverLicenseId") String driverLicenseId,
+            @RequestParam("driverLicenseImage") MultipartFile driverLicenseImage,
+            @RequestParam("frontView") MultipartFile frontView,
+            @RequestParam("backView") MultipartFile backView,
+            @RequestParam("leftSideView") MultipartFile leftSideView,
+            @RequestParam("rightSideView") MultipartFile rightSideView
+    ){
+        try {
+            vehicleService.updateVehicle(new VehicleDTO(
+                    registrationNumber,
+                    brand,
+                    category,
+                    fuelType,
+                    hybridStatus,
+                    fuelUsage,
+                    seatCapacity,
+                    vehicleType,
+                    transmissionType,
+                    driverName,
+                    driverLicenseId,
+                    Base64.getEncoder().encodeToString(driverLicenseImage.getBytes()),
+                    Base64.getEncoder().encodeToString(frontView.getBytes()),
+                    Base64.getEncoder().encodeToString(backView.getBytes()),
+                    Base64.getEncoder().encodeToString(leftSideView.getBytes()),
+                    Base64.getEncoder().encodeToString(rightSideView.getBytes())
+            ));
+        } catch (IOException e) {
+            throw new RuntimeException("Image not Found..!!");
+        }
+        return new ResponseEntity<>(registrationNumber+" Vehicle has been Updated Successfully",HttpStatus.OK);
     }
 
     @DeleteMapping(params = "registrationNumber")
