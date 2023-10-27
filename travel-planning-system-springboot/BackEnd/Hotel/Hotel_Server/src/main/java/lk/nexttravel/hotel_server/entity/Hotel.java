@@ -12,14 +12,18 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Hotel {
     @Id
-    private String id;
+    private String hotelId;
+    private String hotelLocation;
     private String hotelName;
-    private String location;
     private String coordinates;
+    private String roomType;
+    private String starRate;
+    private String packageCategory;
+    private String hotelContactNumber;
+    private  boolean petsAllowedOrNot;
+    private  String cancelCriteria;
+    private  String remarks;
+    private  double hotelFee;
     private String email;
-    private String number1;
-    private String number2;
-    private String petStats;
-    private int hotelFee;
-    private String cancellationCriteria;
+    private String image;
 }

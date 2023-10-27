@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -15,16 +16,39 @@ public class CustomerApi {
     @Autowired
     CustomerService customerService;
 
+
     @PostMapping
-    public ResponseEntity<String> saveCustomer(@RequestBody CustomerDTO customerDTO){
-        customerService.saveCustomer(customerDTO);
-        return new ResponseEntity<>(customerDTO.getId()+" Customer Saved..!", HttpStatus.OK);
+    public ResponseEntity<String> saveCustomer(
+            @RequestParam("customerId") String customerId,
+            @RequestParam("name") String name,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address,
+            @RequestParam("nic") String nic,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("profilePic") String profilePic
+    ){
+        try {
+        customerService.saveCustomer(new CustomerDTO(
+                customerId,
+                name,
+                email,
+                address,
+                nic,
+                username,
+                password,
+                Base64.getEncoder().encodeToString(profilePic.getBytes())
+        ));
+        }catch (Exception e){
+            throw new RuntimeException("Image not Found..!");
+        }
+        return new ResponseEntity<>(customerId+" Customer Saved..!",HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<String> updateCustomer(@RequestBody CustomerDTO customer){
         customerService.updateCustomer(customer);
-        return new ResponseEntity<>(customer.getId()+" Customer Updated..!",HttpStatus.OK);
+        return new ResponseEntity<>(customer.getCustomerId()+" Customer Updated..!",HttpStatus.OK);
     }
 
     @DeleteMapping(params = "id")

@@ -10,24 +10,19 @@ import lombok.NoArgsConstructor;
 @Data
 public class VehicleDTO {
     private String registrationNumber;
-    private String brand;
+    private String vehicleBrand;
     private String category;
     private String fuelType;
-    private boolean hybridStatus;
+    private boolean isHybrid;
     private double fuelUsage;
+    private String frontView;
+    private String rearView;
+    private String sideView;
+    private String otherSideView;
     private int seatCapacity;
     private String vehicleType;
-    private String transmissionType;
+    private String transmission;
     private String driverName;
-    private String driverLicenseId;
-    @Column(columnDefinition = "LONGTEXT")
-    private String driverLicenseImage;
-    @Column(columnDefinition = "LONGTEXT")
-    private String frontView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String backView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String leftSideView;
-    @Column(columnDefinition = "LONGTEXT")
-    private String rightSideView;
+    private String driverNumber;
+    private String driverLicense;
 }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -16,17 +18,94 @@ public class HotelApi {
     @Autowired
     HotelService hotelService;
 
-    @PostMapping
+  /*  @PostMapping
     public ResponseEntity<String> saveHotel(@RequestBody HotelDTO hotelDTO){
         hotelService.saveHotel(hotelDTO);
-        return new ResponseEntity<>(hotelDTO.getId()+" Hotel Saved..!", HttpStatus.OK);
+        return new ResponseEntity<>(hotelDTO.getHotelId()+" Hotel Saved..!", HttpStatus.OK);
+    }*/
+
+    @PostMapping
+    public  ResponseEntity<String> saveHotel(
+            @RequestParam("hotelId") String hotelId,
+            @RequestParam("hotelLocation") String hotelLocation,
+            @RequestParam("hotelName") String hotelName,
+            @RequestParam("coordinates") String coordinates,
+            @RequestParam("roomType") String roomType,
+            @RequestParam("starRate") String starRate,
+            @RequestParam("packageCategory") String packageCategory,
+            @RequestParam("hotelContactNumber") String hotelContactNumber,
+            @RequestParam("petsAllowedOrNot") boolean petsAllowedOrNot,
+            @RequestParam("cancelCriteria") String cancelCriteria,
+            @RequestParam("remarks") String remarks,
+            @RequestParam("hotelFee") double hotelFee,
+            @RequestParam("email") String email,
+            @RequestParam("image") String image
+    ){
+        try{
+            hotelService.saveHotel(new HotelDTO(
+                    hotelId,
+                    hotelLocation,
+                    hotelName,
+                    coordinates,
+                    roomType,
+                    starRate,
+                    packageCategory,
+                    hotelContactNumber,
+                    petsAllowedOrNot,
+                    cancelCriteria,
+                    remarks,
+                    hotelFee,
+                    email,
+                    Base64.getEncoder().encodeToString(image.getBytes())
+            ));
+        }catch (Exception e){
+            throw new RuntimeException("Image Not Found..!");
+        }
+        return new ResponseEntity<>(hotelId+" Hotel Saved..!",HttpStatus.OK);
     }
 
+
+
     @PutMapping
-    public ResponseEntity<String> updateHotel(@RequestBody HotelDTO hotelDTO){
-        hotelService.updateHotel(hotelDTO);
-        return new ResponseEntity<>(hotelDTO.getId()+" Hotel Updated..!",HttpStatus.OK);
+    public  ResponseEntity<String> updateHotel(
+            @RequestParam("hotelId") String hotelId,
+            @RequestParam("hotelLocation") String hotelLocation,
+            @RequestParam("hotelName") String hotelName,
+            @RequestParam("coordinates") String coordinates,
+            @RequestParam("roomType") String roomType,
+            @RequestParam("starRate") String starRate,
+            @RequestParam("packageCategory") String packageCategory,
+            @RequestParam("hotelContactNumber") String hotelContactNumber,
+            @RequestParam("petsAllowedOrNot") boolean petsAllowedOrNot,
+            @RequestParam("cancelCriteria") String cancelCriteria,
+            @RequestParam("remarks") String remarks,
+            @RequestParam("hotelFee") double hotelFee,
+            @RequestParam("email") String email,
+            @RequestParam("image") String image
+    ){
+        try{
+            hotelService.updateHotel(new HotelDTO(
+                    hotelId,
+                    hotelLocation,
+                    hotelName,
+                    coordinates,
+                    roomType,
+                    starRate,
+                    packageCategory,
+                    hotelContactNumber,
+                    petsAllowedOrNot,
+                    cancelCriteria,
+                    remarks,
+                    hotelFee,
+                    email,
+                    Base64.getEncoder().encodeToString(image.getBytes())
+            ));
+        }catch (Exception e){
+            throw new RuntimeException("Image Not Found..!");
+        }
+        return new ResponseEntity<>(hotelId+" Hotel Updated..!",HttpStatus.OK);
     }
+
     @DeleteMapping(params = "id")
     public ResponseEntity<String> deleteHotel(String id){
         hotelService.deleteHotel(id);

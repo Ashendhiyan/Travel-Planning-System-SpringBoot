@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CustomerDTO {
-    private String id;
-    private String userName;
-    private String address;
-    private int age;
+    private String customerId;
+    private String name;
     private String email;
-    private String gender;
-    private int nic;
-    private String contactNumber;;
+    private String address;
+    private String nic;
+    private String username;
+    private String password;
+    private String profilePic;
 }
+

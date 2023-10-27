@@ -20,13 +20,13 @@ public class UserApi {
     @PostMapping
     public ResponseEntity<String> saveCustomer(@RequestBody UserDTO userDTO){
         service.saveUser(userDTO);
-        return new ResponseEntity<>(userDTO.getId()+" User Saved..!", HttpStatus.OK);
+        return new ResponseEntity<>(userDTO.getUserId()+" User Saved..!", HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<String> updateCustomer(@RequestBody UserDTO userDTO){
         service.updateUser(userDTO);
-        return new ResponseEntity<>(userDTO.getId()+" User Updated...",HttpStatus.OK);
+        return new ResponseEntity<>(userDTO.getUserId()+" User Updated...",HttpStatus.OK);
     }
 
     @GetMapping(params = "id")

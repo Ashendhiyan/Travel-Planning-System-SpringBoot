@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -16,16 +19,70 @@ public class GuideApi {
     @Autowired
     GuideService guideService;
 
+
     @PostMapping
-    public ResponseEntity<String> saveGuide(@RequestBody GuideDTO guideDTO){
-        guideService.saveGuide(guideDTO);
-        return new ResponseEntity<>(guideDTO.getId()+" Guide saved..!", HttpStatus.OK);
+    public ResponseEntity<String> saveGuide(
+            @RequestParam("guideId") String guideId,
+            @RequestParam("guideName") String guideName,
+            @RequestParam("address") String address,
+            @RequestParam("gender") String gender,
+            @RequestParam("number") String number,
+            @RequestParam("experience") String experience,
+            @RequestParam("manDayValue") double manDayValue,
+            @RequestParam("guideImage")MultipartFile guideImage,
+            @RequestParam("nicImage")MultipartFile nicImage,
+            @RequestParam("guideIDImage")MultipartFile guideIDImage
+            ){
+        try{
+            guideService.saveGuide(new GuideDTO(
+                    guideId,
+                    guideName,
+                    address,
+                    gender,
+                    number,
+                    experience,
+                    manDayValue,
+                    Base64.getEncoder().encodeToString(guideImage.getBytes()),
+                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
+                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())
+            ));
+        } catch (IOException e) {
+            throw new RuntimeException("Image Not Found..!");
+        }
+        return new ResponseEntity<>(guideId+" Guide Saved..!",HttpStatus.OK);
     }
 
+
     @PutMapping
-    public ResponseEntity<String> updateGuide(@RequestBody GuideDTO guideDTO){
-        guideService.updateGuide(guideDTO);
-        return new ResponseEntity<>(guideDTO.getId()+" Guide Updated..!",HttpStatus.OK);
+    public ResponseEntity<String> updateGuide(
+            @RequestParam("guideId") String guideId,
+            @RequestParam("guideName") String guideName,
+            @RequestParam("address") String address,
+            @RequestParam("gender") String gender,
+            @RequestParam("number") String number,
+            @RequestParam("experience") String experience,
+            @RequestParam("manDayValue") double manDayValue,
+            @RequestParam("guideImage")MultipartFile guideImage,
+            @RequestParam("nicImage")MultipartFile nicImage,
+            @RequestParam("guideIDImage")MultipartFile guideIDImage
+    ){
+        try{
+            guideService.updateGuide(new GuideDTO(
+                    guideId,
+                    guideName,
+                    address,
+                    gender,
+                    number,
+                    experience,
+                    manDayValue,
+                    Base64.getEncoder().encodeToString(guideImage.getBytes()),
+                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
+                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())
+            ));
+        } catch (IOException e) {
+            throw new RuntimeException("Image Not Found..!");
+        }
+        return new ResponseEntity<>(guideId+" Guide Updated..!",HttpStatus.OK);
     }
 
     @GetMapping(params = "id")

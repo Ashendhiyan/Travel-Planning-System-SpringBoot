@@ -23,40 +23,42 @@ public class VehicleApi {
     @PostMapping
     public ResponseEntity<String> saveVehicle(
             @RequestParam("registrationNumber") String registrationNumber,
-            @RequestParam("brand") String brand,
+            @RequestParam("vehicleBrand") String vehicleBrand,
             @RequestParam("category") String category,
             @RequestParam("fuelType") String fuelType,
-            @RequestParam("hybridStatus") boolean hybridStatus,
+            @RequestParam("isHybrid") boolean isHybrid,
             @RequestParam("fuelUsage") double fuelUsage,
+            @RequestParam("frontView") MultipartFile frontView,
+            @RequestParam("rearView") MultipartFile rearView,
+            @RequestParam("sideView") MultipartFile sideView,
+            @RequestParam("otherSideView") MultipartFile otherSideView,
             @RequestParam("seatCapacity") int seatCapacity,
             @RequestParam("vehicleType") String vehicleType,
-            @RequestParam("transmissionType") String transmissionType,
+            @RequestParam("transmission") String transmission,
             @RequestParam("driverName") String driverName,
-            @RequestParam("driverLicenseId") String driverLicenseId,
-            @RequestParam("driverLicenseImage") MultipartFile driverLicenseImage,
-            @RequestParam("frontView") MultipartFile frontView,
-            @RequestParam("backView") MultipartFile backView,
-            @RequestParam("leftSideView") MultipartFile leftSideView,
-            @RequestParam("rightSideView") MultipartFile rightSideView
+            @RequestParam("driverNumber") String driverNumber,
+            @RequestParam("driverLicense") MultipartFile driverLicense
+
     ) {
         try {
             vehicleService.saveVehicle(new VehicleDTO(
-registrationNumber,
-                    brand,
+                    registrationNumber,
+                    vehicleBrand,
                     category,
                     fuelType,
-                    hybridStatus,
+                    isHybrid,
                     fuelUsage,
+                    Base64.getEncoder().encodeToString(frontView.getBytes()),
+                    Base64.getEncoder().encodeToString(rearView.getBytes()),
+                    Base64.getEncoder().encodeToString(sideView.getBytes()),
+                    Base64.getEncoder().encodeToString(otherSideView.getBytes()),
                     seatCapacity,
                     vehicleType,
-                    transmissionType,
+                    transmission,
                     driverName,
-                    driverLicenseId,
-                    Base64.getEncoder().encodeToString(driverLicenseImage.getBytes()),
-                    Base64.getEncoder().encodeToString(frontView.getBytes()),
-                    Base64.getEncoder().encodeToString(backView.getBytes()),
-                    Base64.getEncoder().encodeToString(leftSideView.getBytes()),
-                    Base64.getEncoder().encodeToString(rightSideView.getBytes())
+                    driverNumber,
+                    Base64.getEncoder().encodeToString(driverLicense.getBytes())
+
             ));
         } catch (IOException e) {
             throw new RuntimeException("Image Not Found..!");
@@ -68,40 +70,40 @@ registrationNumber,
     @PutMapping
     public ResponseEntity<String> updateVehicle(
             @RequestParam("registrationNumber") String registrationNumber,
-            @RequestParam("brand") String brand,
+            @RequestParam("vehicleBrand") String vehicleBrand,
             @RequestParam("category") String category,
             @RequestParam("fuelType") String fuelType,
-            @RequestParam("hybridStatus") boolean hybridStatus,
+            @RequestParam("isHybrid") boolean isHybrid,
             @RequestParam("fuelUsage") double fuelUsage,
+            @RequestParam("frontView") MultipartFile frontView,
+            @RequestParam("rearView") MultipartFile rearView,
+            @RequestParam("sideView") MultipartFile sideView,
+            @RequestParam("otherSideView") MultipartFile otherSideView,
             @RequestParam("seatCapacity") int seatCapacity,
             @RequestParam("vehicleType") String vehicleType,
-            @RequestParam("transmissionType") String transmissionType,
+            @RequestParam("transmission") String transmission,
             @RequestParam("driverName") String driverName,
-            @RequestParam("driverLicenseId") String driverLicenseId,
-            @RequestParam("driverLicenseImage") MultipartFile driverLicenseImage,
-            @RequestParam("frontView") MultipartFile frontView,
-            @RequestParam("backView") MultipartFile backView,
-            @RequestParam("leftSideView") MultipartFile leftSideView,
-            @RequestParam("rightSideView") MultipartFile rightSideView
+            @RequestParam("driverNumber") String driverNumber,
+            @RequestParam("driverLicense") MultipartFile driverLicense
     ){
         try {
             vehicleService.updateVehicle(new VehicleDTO(
                     registrationNumber,
-                    brand,
+                    vehicleBrand,
                     category,
                     fuelType,
-                    hybridStatus,
+                    isHybrid,
                     fuelUsage,
+                    Base64.getEncoder().encodeToString(frontView.getBytes()),
+                    Base64.getEncoder().encodeToString(rearView.getBytes()),
+                    Base64.getEncoder().encodeToString(sideView.getBytes()),
+                    Base64.getEncoder().encodeToString(otherSideView.getBytes()),
                     seatCapacity,
                     vehicleType,
-                    transmissionType,
+                    transmission,
                     driverName,
-                    driverLicenseId,
-                    Base64.getEncoder().encodeToString(driverLicenseImage.getBytes()),
-                    Base64.getEncoder().encodeToString(frontView.getBytes()),
-                    Base64.getEncoder().encodeToString(backView.getBytes()),
-                    Base64.getEncoder().encodeToString(leftSideView.getBytes()),
-                    Base64.getEncoder().encodeToString(rightSideView.getBytes())
+                    driverNumber,
+                    Base64.getEncoder().encodeToString(driverLicense.getBytes())
             ));
         } catch (IOException e) {
             throw new RuntimeException("Image not Found..!!");

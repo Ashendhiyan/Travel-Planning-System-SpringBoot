@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class GuideDTO {
-    private String id;
-    private String name;
+    private String guideId;
+    private String guideName;
     private String address;
-    private int age;
     private String gender;
     private String number;
-    private String images;
-    private String guideNicImages;
     private String experience;
-    private int manDayValue;
+    private double manDayValue;
+    private String guideImage;
+    private String nicImage;
+    private String guideIDImage;
 }
