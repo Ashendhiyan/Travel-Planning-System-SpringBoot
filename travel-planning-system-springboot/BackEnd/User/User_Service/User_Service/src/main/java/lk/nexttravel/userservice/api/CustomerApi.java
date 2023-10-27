@@ -46,9 +46,31 @@ public class CustomerApi {
     }
 
     @PutMapping
-    public ResponseEntity<String> updateCustomer(@RequestBody CustomerDTO customer){
-        customerService.updateCustomer(customer);
-        return new ResponseEntity<>(customer.getCustomerId()+" Customer Updated..!",HttpStatus.OK);
+    public ResponseEntity<String> updateCustomer(
+            @RequestParam("customerId") String customerId,
+            @RequestParam("name") String name,
+            @RequestParam("email") String email,
+            @RequestParam("address") String address,
+            @RequestParam("nic") String nic,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("profilePic") String profilePic
+    ){
+        try {
+            customerService.updateCustomer(new CustomerDTO(
+                    customerId,
+                    name,
+                    email,
+                    address,
+                    nic,
+                    username,
+                    password,
+                    Base64.getEncoder().encodeToString(profilePic.getBytes())
+            ));
+        }catch (Exception e){
+            throw new RuntimeException("Image not Found..!");
+        }
+        return new ResponseEntity<>(customerId+" Customer Updated..!",HttpStatus.OK);
     }
 
     @DeleteMapping(params = "id")
