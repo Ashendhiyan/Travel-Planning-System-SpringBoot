@@ -9,15 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="travelPackageServer" />
         <module name="EurekaServer" />
-        <module name="Vehicle_Server" />
         <module name="Hotel_Server" />
         <module name="Guide_Server" />
         <module name="User_Service" />
+        <module name="Vehicle_Server" />
+        <module name="ApiGateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="Guide_Server" options="-parameters" />
       <module name="Hotel_Server" options="-parameters" />
