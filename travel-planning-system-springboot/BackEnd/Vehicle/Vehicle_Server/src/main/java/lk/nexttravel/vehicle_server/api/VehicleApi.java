@@ -20,11 +20,11 @@ public class VehicleApi {
     VehicleService vehicleService;
 
 
-
+   /* @GetMapping
     public ResponseEntity<String> getApi(){
         return new ResponseEntity<>("Api ok",HttpStatus.OK);
     }
-
+*/
 
     @PostMapping
     public ResponseEntity<String> saveVehicle(
