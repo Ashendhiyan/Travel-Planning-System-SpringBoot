@@ -96,4 +96,10 @@ public class GuideApi {
     public ResponseEntity<List<GuideDTO>> getAllGuides(){
         return new ResponseEntity<>(guideService.findAll(),HttpStatus.OK);
     }
+
+  /*  @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Guide Api is Ok",HttpStatus.OK);
+    }*/
+
 }

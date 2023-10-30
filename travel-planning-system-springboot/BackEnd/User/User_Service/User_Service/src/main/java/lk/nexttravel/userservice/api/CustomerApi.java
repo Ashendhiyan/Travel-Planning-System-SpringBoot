@@ -88,4 +88,10 @@ public class CustomerApi {
     public ResponseEntity<List<CustomerDTO>> getAllCustomers(){
         return new ResponseEntity<>(customerService.getAllCustomers(),HttpStatus.OK);
     }
+
+  /*  @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Customer Api is Ok",HttpStatus.OK);
+    }*/
+
 }

@@ -45,4 +45,10 @@ public class PackageAPI {
         List<PackageDTO> all = packageService.getAll();
         return new ResponseEntity<>(all,HttpStatus.OK);
     }
+
+ /*   @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Package Api is Ok",HttpStatus.OK);
+    }*/
+
 }

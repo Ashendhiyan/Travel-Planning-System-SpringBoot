@@ -47,4 +47,9 @@ public class UserApi {
         return new ResponseEntity<>(all,HttpStatus.OK);
     }
 
+/*    @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("User Api is Ok",HttpStatus.OK);
+    }*/
+
 }

@@ -122,4 +122,10 @@ public class HotelApi {
         return new ResponseEntity<>(hotelService.getAllHotels(),HttpStatus.OK);
     }
 
+
+  /*  @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Hotel Api is Ok",HttpStatus.OK);
+    }*/
+
 }

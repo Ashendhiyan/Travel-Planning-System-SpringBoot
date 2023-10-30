@@ -43,4 +43,9 @@ public class BookingApi {
     public ResponseEntity<List<BookingDTO>> getAllBookings(){
         return new ResponseEntity<>( bookingService.getAllBookings(),HttpStatus.OK);
     }
+
+   /*    @GetMapping
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Booking Api is Ok",HttpStatus.OK);
+    }*/
 }
