@@ -70,6 +70,6 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<VehicleDTO> getAllVehicleByTransmissionTypeAndSeatCapacityAndAndFuelType(String transmissionType, int seatCapacity, String fuelType) {
-        return convertor.vehicleEntityListToVehicleDTOList(vehicleServiceRepo.existsByTransmissionTypeAndSeatCapacityAndFuelType(transmissionType,seatCapacity,fuelType));
+        return convertor.vehicleEntityListToVehicleDTOList(vehicleServiceRepo.findAllByTransmissionAndSeatCapacityAndFuelType(transmissionType,seatCapacity,fuelType));
     }
 }

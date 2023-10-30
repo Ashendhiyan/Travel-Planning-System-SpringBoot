@@ -20,6 +20,12 @@ public class VehicleApi {
     VehicleService vehicleService;
 
 
+
+    public ResponseEntity<String> getApi(){
+        return new ResponseEntity<>("Api ok",HttpStatus.OK);
+    }
+
+
     @PostMapping
     public ResponseEntity<String> saveVehicle(
             @RequestParam("registrationNumber") String registrationNumber,
@@ -37,7 +43,8 @@ public class VehicleApi {
             @RequestParam("transmission") String transmission,
             @RequestParam("driverName") String driverName,
             @RequestParam("driverNumber") String driverNumber,
-            @RequestParam("driverLicense") MultipartFile driverLicense
+            @RequestParam("licenseFront") MultipartFile licenseFront,
+            @RequestParam("licenseRear") MultipartFile licenseRear
 
     ) {
         try {
@@ -57,7 +64,8 @@ public class VehicleApi {
                     transmission,
                     driverName,
                     driverNumber,
-                    Base64.getEncoder().encodeToString(driverLicense.getBytes())
+                    Base64.getEncoder().encodeToString(licenseFront.getBytes()),
+                    Base64.getEncoder().encodeToString(licenseRear.getBytes())
 
             ));
         } catch (IOException e) {
@@ -84,7 +92,8 @@ public class VehicleApi {
             @RequestParam("transmission") String transmission,
             @RequestParam("driverName") String driverName,
             @RequestParam("driverNumber") String driverNumber,
-            @RequestParam("driverLicense") MultipartFile driverLicense
+            @RequestParam("licenseFront") MultipartFile licenseFront,
+            @RequestParam("licenseRear") MultipartFile licenseRear
     ){
         try {
             vehicleService.updateVehicle(new VehicleDTO(
@@ -103,7 +112,8 @@ public class VehicleApi {
                     transmission,
                     driverName,
                     driverNumber,
-                    Base64.getEncoder().encodeToString(driverLicense.getBytes())
+                    Base64.getEncoder().encodeToString(licenseFront.getBytes()),
+                    Base64.getEncoder().encodeToString(licenseRear.getBytes())
             ));
         } catch (IOException e) {
             throw new RuntimeException("Image not Found..!!");

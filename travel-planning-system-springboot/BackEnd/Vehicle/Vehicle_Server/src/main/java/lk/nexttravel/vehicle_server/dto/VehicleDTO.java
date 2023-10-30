@@ -24,5 +24,6 @@ public class VehicleDTO {
     private String transmission;
     private String driverName;
     private String driverNumber;
-    private String driverLicense;
+    private String licenseFront;
+    private String licenseRear;
 }

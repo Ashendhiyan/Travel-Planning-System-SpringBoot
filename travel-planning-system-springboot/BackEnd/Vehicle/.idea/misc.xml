@@ -4,12 +4,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/BackEnd/User/User_Service/User_Service/pom.xml" />
-        <option value="$PROJECT_DIR$/BackEnd/Guide/Guide_Server/pom.xml" />
-        <option value="$PROJECT_DIR$/BackEnd/Hotel/Hotel_Server/pom.xml" />
-        <option value="$PROJECT_DIR$/BackEnd/Package/Package_Server/pom.xml" />
-        <option value="$PROJECT_DIR$/BackEnd/Vehicle/Vehicle_Server/pom.xml" />
-        <option value="$PROJECT_DIR$/BackEnd/MicroServices/EurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/Vehicle_Server/pom.xml" />
       </list>
     </option>
   </component>

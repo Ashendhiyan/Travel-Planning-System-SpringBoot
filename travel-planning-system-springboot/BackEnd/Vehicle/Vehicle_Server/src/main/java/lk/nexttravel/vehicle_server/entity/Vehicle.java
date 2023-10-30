@@ -42,5 +42,7 @@ public class Vehicle {
     @Column(nullable = false)
     private String driverNumber;
     @Column(nullable = false,columnDefinition = "LONGTEXT")
-    private String driverLicense;
+    private String licenseFront;
+    @Column(nullable = false,columnDefinition = "LONGTEXT")
+    private String licenseRear;
 }

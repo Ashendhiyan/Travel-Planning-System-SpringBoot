@@ -19,5 +19,4 @@ public class GuideDTO {
     private double manDayValue;
     private String guideImage;
     private String nicImage;
-    private String guideIDImage;
 }

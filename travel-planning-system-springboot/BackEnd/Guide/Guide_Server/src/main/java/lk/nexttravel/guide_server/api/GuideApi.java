@@ -30,8 +30,7 @@ public class GuideApi {
             @RequestParam("experience") String experience,
             @RequestParam("manDayValue") double manDayValue,
             @RequestParam("guideImage")MultipartFile guideImage,
-            @RequestParam("nicImage")MultipartFile nicImage,
-            @RequestParam("guideIDImage")MultipartFile guideIDImage
+            @RequestParam("nicImage")MultipartFile nicImage
             ){
         try{
             guideService.saveGuide(new GuideDTO(
@@ -43,8 +42,7 @@ public class GuideApi {
                     experience,
                     manDayValue,
                     Base64.getEncoder().encodeToString(guideImage.getBytes()),
-                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
-                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())
+                    Base64.getEncoder().encodeToString(nicImage.getBytes())
             ));
         } catch (IOException e) {
             throw new RuntimeException("Image Not Found..!");
@@ -63,8 +61,7 @@ public class GuideApi {
             @RequestParam("experience") String experience,
             @RequestParam("manDayValue") double manDayValue,
             @RequestParam("guideImage")MultipartFile guideImage,
-            @RequestParam("nicImage")MultipartFile nicImage,
-            @RequestParam("guideIDImage")MultipartFile guideIDImage
+            @RequestParam("nicImage")MultipartFile nicImage
     ){
         try{
             guideService.updateGuide(new GuideDTO(
@@ -76,8 +73,7 @@ public class GuideApi {
                     experience,
                     manDayValue,
                     Base64.getEncoder().encodeToString(guideImage.getBytes()),
-                    Base64.getEncoder().encodeToString(nicImage.getBytes()),
-                    Base64.getEncoder().encodeToString(guideIDImage.getBytes())
+                    Base64.getEncoder().encodeToString(nicImage.getBytes())
             ));
         } catch (IOException e) {
             throw new RuntimeException("Image Not Found..!");
